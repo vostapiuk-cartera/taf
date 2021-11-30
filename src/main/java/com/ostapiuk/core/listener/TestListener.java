@@ -38,7 +38,8 @@ public class TestListener implements ITestListener, ISuiteListener, IInvokedMeth
     public void onTestFailure(ITestResult arg0) {
         String temp = String.format("\r%n %s has failed on %s \r%n %s \r%n", arg0.getMethod().getMethodName(), DateFormatUtils.format(arg0.getEndMillis(), "yyyy-MM-dd hh:mm"), arg0.getThrowable().getMessage());
         Log.log(temp);
-        ScreenshotUtils.getScreenshot(DriverProvider.getDriver(), arg0.getMethod().getMethodName());
+        AllureAttachment.takeScreenshotPNG();
+        AllureAttachment.saveTextLog(temp);
     }
 
     @Override
